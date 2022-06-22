@@ -19,9 +19,9 @@ public class Person {
     //@Qualifier("myCat")
     // we can use injection here - reflection used!
     private Pet pet;
-    @Value("${person.fullName}")
+  //  @Value("${person.fullName}")
     private String fullName;
-    @Value("${person.age}")
+  //  @Value("${person.age}")
     private int age;
 
     @Autowired
