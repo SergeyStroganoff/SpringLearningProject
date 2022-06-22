@@ -1,8 +1,6 @@
 package org.example.entities;
 
-import org.springframework.stereotype.Component;
-
-@Component("myCat")
+//@Component("myCat")
 public class Cat implements Pet {
 
     private String name;

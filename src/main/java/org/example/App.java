@@ -5,7 +5,7 @@ import org.example.entities.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Hello world!
+ * Project for learning Spring framework!
  */
 public class App {
     public static void main(String[] args) {

@@ -1,8 +1,6 @@
 package org.example.entities;
 
-import org.springframework.stereotype.Component;
-
-@Component("myDog")
+//@Component("myDog")
 public class Dog implements Pet {
     @Override
     public String getVoice() {
