@@ -25,6 +25,6 @@ public class SecurityAspect {
 
     @Before("methodsWithStringParam() || methodsWithItemParam()") // combination pointcuts
     public void doSecurity() {
-        System.out.println("Check user rights");
+        System.out.println("Check user rights - It is code from aspect");
     }
 }
