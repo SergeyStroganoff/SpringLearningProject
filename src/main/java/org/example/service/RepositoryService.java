@@ -3,23 +3,27 @@ package org.example.service;
 import org.example.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Query;
 import java.util.List;
 
-@Service
+@Repository
 public class RepositoryService {
 
-    SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-    public RepositoryService(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+
+    protected Session getSession() {
+        if (sessionFactory==null){
+            System.out.println("SessionFAcroty is null !!! Error");
+        }
+        return this.sessionFactory.getCurrentSession();
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     public long addEmployee(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
@@ -75,10 +79,10 @@ public class RepositoryService {
     }
 
     public void deleteEmploeesById(long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = getSession();
         session.beginTransaction();
-      // Employee employee = session.get(Employee.class, id);
-      // session.delete(employee);
+        // Employee employee = session.get(Employee.class, id);
+        // session.delete(employee);
         Query query = session.createQuery("delete Employee where id=:id");
         query.setParameter("id", id);
         query.executeUpdate();
