@@ -1,16 +1,14 @@
 package org.example.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
@@ -18,7 +16,7 @@ public class Employee {
     @Column(name = "department")
     private String department;
     @Column(name = "salary")
-    private int Salary;
+    private int salary;
 
     public Employee() {
     }
@@ -27,7 +25,7 @@ public class Employee {
         this.name = name;
         this.surname = surname;
         this.department = department;
-        Salary = salary;
+        this.salary = salary;
     }
 
     public String getName() {
@@ -55,11 +53,11 @@ public class Employee {
     }
 
     public int getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(int salary) {
-        Salary = salary;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -73,7 +71,7 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", department='" + department + '\'' +
-                ", Salary=" + Salary +
+                ", Salary=" + salary +
                 '}';
     }
 }
