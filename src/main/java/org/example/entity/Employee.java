@@ -18,14 +18,31 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details table.
+    private Detail employeeDetail;
+
+    public Detail getEmployeeDetail() {
+        return employeeDetail;
+    }
+
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
+    public Employee(String name, String surname, String department, int salary, Detail employeeDetail) {
         this.name = name;
         this.surname = surname;
         this.department = department;
         this.salary = salary;
+        this.employeeDetail = employeeDetail;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -60,8 +77,8 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Long getId() {
-        return id;
+    public void setEmployeeDetail(Detail employeeDetail) {
+        this.employeeDetail = employeeDetail;
     }
 
     @Override
@@ -71,7 +88,8 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", department='" + department + '\'' +
-                ", Salary=" + salary +
+                ", salary=" + salary +
+                ", employeeDetail=" + employeeDetail +
                 '}';
     }
 }

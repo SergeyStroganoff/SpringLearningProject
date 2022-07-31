@@ -4,8 +4,8 @@ import org.example.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -13,20 +13,19 @@ import java.util.List;
 @Repository
 public class RepositoryService {
 
+    public RepositoryService() {
+    }
+
     @Autowired
     private SessionFactory sessionFactory;
 
-
-    protected Session getSession() {
-        if (sessionFactory==null){
-            System.out.println("SessionFAcroty is null !!! Error");
-        }
-        return this.sessionFactory.getCurrentSession();
+    public RepositoryService(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
 
     public long addEmployee(Employee employee) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(employee);
         session.getTransaction().commit();
@@ -50,7 +49,7 @@ public class RepositoryService {
     }
 
     public List<Employee> getEmployeesByName(String name) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Employee> employeeList = session.createQuery("From Employee where name=name").getResultList();
         session.getTransaction().commit();
@@ -79,7 +78,7 @@ public class RepositoryService {
     }
 
     public void deleteEmploeesById(long id) {
-        Session session = getSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         // Employee employee = session.get(Employee.class, id);
         // session.delete(employee);
