@@ -16,7 +16,12 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    public Detail() {
+    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.ALL)
+    private Employee employee;
+
+
+    public Employee getEmployee() {
+        return employee;
     }
 
     public Detail(String city, String phoneNumber, String email) {
@@ -25,12 +30,7 @@ public class Detail {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Detail() {
     }
 
     public String getCity() {
@@ -57,6 +57,10 @@ public class Detail {
         this.email = email;
     }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "Detail{" +
@@ -64,6 +68,7 @@ public class Detail {
                 ", city='" + city + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
+                ", employee=" + employee +
                 '}';
     }
 }
