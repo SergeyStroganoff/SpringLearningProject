@@ -1,20 +1,34 @@
 package org.example.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "surname")
     private String surname;
-    @Column(name = "department")
-    private String department;
+
     @Column(name = "salary")
     private int salary;
 
@@ -22,74 +36,44 @@ public class Employee {
     @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details table.
     private Detail employeeDetail;
 
-    public Detail getEmployeeDetail() {
-        return employeeDetail;
-    }
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "department_id") //foreign key is always here.
+    private Department department;
 
-    public Employee() {
-    }
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "employee_skils",
+            joinColumns = @JoinColumn(name = "employees_id"),
+            inverseJoinColumns = @JoinColumn(name = "skills_id")) // join table for foreign keys !!!
+    @ToString.Exclude
+    private List<Skill> skillList;
 
-    public Employee(String name, String surname, String department, int salary, Detail employeeDetail) {
+    public Employee(String name, String surname, int salary, Detail employeeDetail) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
         this.employeeDetail = employeeDetail;
     }
 
-    public long getId() {
-        return id;
+    public void addSkill(Skill... skill) {
+        if (skillList == null) {
+            skillList = new ArrayList<>();
+        }
+
+        skillList.addAll(List.of(skill));
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
+        if (department.getEmployeeList() == null || !department.getEmployeeList().contains(this)) {
+            department.addEmployee(this);
+        }
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public void setEmployeeDetail(Detail employeeDetail) {
-        this.employeeDetail = employeeDetail;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                ", employeeDetail=" + employeeDetail +
-                '}';
+    public void addEmployeeDetail(Detail detail) {
+        employeeDetail = detail;
     }
 }
