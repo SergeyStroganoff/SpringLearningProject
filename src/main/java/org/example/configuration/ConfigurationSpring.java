@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = "org.example")
 @EnableTransactionManagement
 @PropertySource(value = {"classpath:hibernate.properties"})
 public class ConfigurationSpring {
