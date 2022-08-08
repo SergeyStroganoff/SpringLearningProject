@@ -5,5 +5,7 @@
 </head>
 <body>
 <h2>My Index</h2>
+
+<a href="${pageContext.request.contextPath}/askName" type="" id="Go">Go</a>
 </body>
 </html>
