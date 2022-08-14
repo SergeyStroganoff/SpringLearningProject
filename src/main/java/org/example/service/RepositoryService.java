@@ -63,7 +63,7 @@ public class RepositoryService {
         return employeeList;
     }
 
-    public void updateEmploee(Employee employee, long id) {
+    public void updateEmployee(Employee employee, long id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Employee employeeFromDB = session.get(Employee.class, id);

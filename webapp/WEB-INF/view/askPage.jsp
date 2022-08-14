@@ -12,9 +12,10 @@
 </head>
 <body>
 <h2>My fist View</h2>
-
 <form action="${pageContext.request.contextPath}/showAnswer" method="get">
-    <input type="text" name="askForm" placeholder="Enter your name">
+    <label>
+        <input type="text" name="askForm" placeholder="Enter your name">
+    </label>
     <input type="submit">
 </form>
 </body>

@@ -28,7 +28,6 @@ public class TestController {
         model.addAttribute("changedAttributeAskForm", empName);
         return "answer";
     }
-
     @RequestMapping(value = "/showAnswerAnotherWay", method = RequestMethod.GET)
     public String showAnswerPageAnotherWay(@RequestParam("askForm") String parameter, Model model) {
         String empName = "Mister" + parameter;
