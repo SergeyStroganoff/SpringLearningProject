@@ -1,6 +1,7 @@
 package org.example.controller;
 
 
+import jakarta.validation.Valid;
 import org.example.entity.dto.DetailDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +22,13 @@ public class DetailController {
     }
 
     @RequestMapping("/showResult")
-    public String showResult(@ModelAttribute("detail") DetailDTO detailDTO,
+    public String showResult(@Valid @ModelAttribute("detail") DetailDTO detailDTO,
                              BindingResult bindingResult, Model model) { // BindingResult goes after @ModelAttribute !!!
         if (bindingResult.hasErrors()) { // validation
-            return "askDetail";
+            return "askDetail";          // show the same page if error
         }
         model.addAttribute("operationResult", "successfully"); // anther way validation
-        if (Objects.equals(detailDTO.getCity(), "") || detailDTO.getCity() == null) {
+        if (Objects.equals(detailDTO.getCity(), "")) {
             System.out.println("Input is incorrect");
             throw new IllegalArgumentException("Error input detail data");
         }

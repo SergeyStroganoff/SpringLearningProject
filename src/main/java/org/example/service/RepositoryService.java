@@ -1,28 +1,27 @@
 package org.example.service;
 
+import lombok.NoArgsConstructor;
 import org.example.entity.Department;
 import org.example.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
+@NoArgsConstructor
 public class RepositoryService {
-
-    public RepositoryService() {
-    }
-
-    @Autowired
-    private SessionFactory sessionFactory;
+    // @Autowired
+    private SessionFactory sessionFactory = new Configuration()
+            .configure("hibernate.cfg.xml")
+            .buildSessionFactory();
 
     public RepositoryService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
 
     public long addEmployee(Employee employee) {
         try (Session session = sessionFactory.openSession()) {
