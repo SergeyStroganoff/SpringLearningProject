@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "employees")
 @NoArgsConstructor
-@ToString
 @Getter
 @Setter
 public class Employee {
@@ -33,7 +32,7 @@ public class Employee {
     private int salary;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details table.
+    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details tables.
     private Detail employeeDetail;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,})
@@ -75,5 +74,15 @@ public class Employee {
 
     public void addEmployeeDetail(Detail detail) {
         employeeDetail = detail;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }
