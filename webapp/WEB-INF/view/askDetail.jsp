@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" buffer="none" isThreadSafe="true" errorPage="error.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
@@ -6,9 +9,13 @@
   Time: 17:15
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="icon" href="${pageContext.request.contextPath}/icon/icon-3914464.png" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/icon-3914464.png" type="image/x-icon">
     <title>Ask Detail Page</title>
 </head>
 <body>
@@ -27,5 +34,8 @@
     <br><br>
     <input type="submit" value="Ok">
 </form:form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>
