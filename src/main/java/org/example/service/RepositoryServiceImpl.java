@@ -10,22 +10,19 @@ import org.example.repository.EmployeeDAO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@org.springframework.stereotype.Service
+@Service
 public class RepositoryServiceImpl implements RepositoryService {
-    private final DepartmentDAO departmentDAO;
-    private final EmployeeDAO employeeDAO;
-    private final ModelMapper modelMapper;
-
-    public RepositoryServiceImpl(DepartmentDAO departmentDAO, EmployeeDAO employeeDAO, ModelMapper modelMapper) {
-        this.departmentDAO = departmentDAO;
-        this.employeeDAO = employeeDAO;
-        this.modelMapper = modelMapper;
-    }
 
     @Autowired
+    private DepartmentDAO departmentDAO;
+    @Autowired
+    private EmployeeDAO employeeDAO;
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     @Override
