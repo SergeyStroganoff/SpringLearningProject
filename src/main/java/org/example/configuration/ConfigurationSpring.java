@@ -56,7 +56,7 @@ public class ConfigurationSpring {
     @Bean
     public LocalSessionFactoryBean getSessionFactory() throws PropertyVetoException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(getDataSourceFromPool());   // set dataSource from c3po
+        sessionFactory.setDataSource(getDataSource());   // set dataSource from c3po
         sessionFactory.setPackagesToScan("org.example.entity");
         sessionFactory.setHibernateProperties(getHibernateProperties());
         return sessionFactory;
@@ -68,11 +68,18 @@ public class ConfigurationSpring {
         properties.put(AvailableSettings.SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
         properties.put(AvailableSettings.STATEMENT_BATCH_SIZE, env.getRequiredProperty("hibernate.batch.size"));
         properties.put(AvailableSettings.HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
-        properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current.session.context.class"));
-        properties.put("hibernate.c3p0.min_size", env.getRequiredProperty("hibernate.c3p0.min_size"));
-        properties.put("hibernate.c3p0.max_size", env.getRequiredProperty("hibernate.c3p0.max_size"));
-        properties.put("hibernate.c3p0.acquire_increment", env.getRequiredProperty("hibernate.c3p0.acquire_increment"));
-        properties.put("hibernate.c3p0.timeout", env.getRequiredProperty("hibernate.c3p0.timeout"));
+        //hibernate.connection.pool=5
+        properties.put(AvailableSettings.POOL_SIZE, env.getRequiredProperty("hibernate.connection.pool"));
+        //hibernate.current_session_context_class=thread
+        properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current_session_context_class"));
+        //hibernate.connection.CharSet=utf8
+        properties.put(AvailableSettings.HBM2DDL_CHARSET_NAME, env.getRequiredProperty("hibernate.connection.CharSet"));
+        //hibernate.connection.characterEncoding=utf8
+        //hibernate.connection.useUnicode=true
+        // properties.put("hibernate.c3p0.min_size", env.getRequiredProperty("hibernate.c3p0.min_size"));
+        //properties.put("hibernate.c3p0.max_size", env.getRequiredProperty("hibernate.c3p0.max_size"));
+        // properties.put("hibernate.c3p0.acquire_increment", env.getRequiredProperty("hibernate.c3p0.acquire_increment"));
+        // properties.put("hibernate.c3p0.timeout", env.getRequiredProperty("hibernate.c3p0.timeout"));
         return properties;
     }
 

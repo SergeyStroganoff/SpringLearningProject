@@ -1,8 +1,10 @@
 package org.example.repository;
 
 import org.example.entity.Employee;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 
 public interface EmployeeDAO {
     Employee getEmployee(long id);
