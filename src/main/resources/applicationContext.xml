@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:myApp.properties"></context:property-placeholder>
     <bean id="myDog" class="org.example.entities.Dog" init-method="init"></bean>
-    <bean id="myPerson" class="org.example.entities.Person">
+    <bean id="myPerson" class="org.example.entities.Person" scope="prototype">
         <constructor-arg ref="myDog"></constructor-arg>
         <property name="pet" ref="myDog"></property>
         <property name="fullName" value="${person.fullName}"  >  </property>

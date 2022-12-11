@@ -6,7 +6,7 @@ public class Dog implements Pet {
         return "Gav Gav";
     }
 
-    public void init() {
+    protected void init() {
         System.out.println(this.toString());
     }
 }
