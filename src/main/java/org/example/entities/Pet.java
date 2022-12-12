@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component;
 
 @Component("myPet")
 public interface Pet {
-    public String getVoice();
+    String getVoice();
 }

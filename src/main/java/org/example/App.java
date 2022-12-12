@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.entities.Dog;
 import org.example.entities.Person;
-import org.example.entities.Pet;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**

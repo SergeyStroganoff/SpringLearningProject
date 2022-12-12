@@ -12,7 +12,7 @@ import javax.annotation.PreDestroy;
 @Component("myPerson")
 // если не указывать ID, то ID будет по дефолту имя класса с маленькой буквы.
 @Scope("singleton") // by default
-//@Scope("prototype") // - destroy method not invoce!
+//@Scope("prototype") // - destroy method not invoice!
 public class Person {
 
     //@Autowired

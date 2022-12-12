@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component("myCat")
 public class Cat implements Pet {
-
     private String name;
 
     public Cat(String name) {
