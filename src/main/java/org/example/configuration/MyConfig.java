@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 @PropertySource("classpath:myApp.properties")
-//@ComponentScan("org.example")
+//@ComponentScan("org.example") - second way without componentScan
 public class MyConfig {
 
     @Bean
@@ -30,5 +30,4 @@ public class MyConfig {
     public Person myPerson() {
         return new Person(catBean());
     }
-
 }
