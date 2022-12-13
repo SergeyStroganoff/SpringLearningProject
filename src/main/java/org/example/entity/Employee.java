@@ -33,7 +33,7 @@ public class Employee {
     private int salary;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details table.
+    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details in table.
     private Detail employeeDetail;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,})

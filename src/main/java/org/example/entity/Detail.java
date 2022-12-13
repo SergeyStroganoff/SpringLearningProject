@@ -16,7 +16,7 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.ALL) // name of field  in table Employee linked to id of in this table.
     private Employee employee;
 
 
