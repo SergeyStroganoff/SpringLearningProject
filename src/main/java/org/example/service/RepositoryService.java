@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class RepositoryService {
 
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public RepositoryService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -77,8 +77,8 @@ public class RepositoryService {
     public void deleteEmploeesById(long id) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-      // Employee employee = session.get(Employee.class, id);
-      // session.delete(employee);
+        // Employee employee = session.get(Employee.class, id);
+        // session.delete(employee);
         Query query = session.createQuery("delete Employee where id=:id");
         query.setParameter("id", id);
         query.executeUpdate();

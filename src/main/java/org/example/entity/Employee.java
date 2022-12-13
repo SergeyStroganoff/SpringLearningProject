@@ -18,7 +18,7 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
-    public Employee() {
+    public Employee() {  //mast be !
     }
 
     public Employee(String name, String surname, String department, int salary) {
@@ -26,7 +26,7 @@ public class Employee {
         this.surname = surname;
         this.department = department;
         this.salary = salary;
-    }
+    } // not required
 
     public String getName() {
         return name;
