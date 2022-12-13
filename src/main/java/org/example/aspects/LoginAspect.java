@@ -30,9 +30,9 @@ public class LoginAspect {
 
     //@After("execution(public * add*(org.example.entities.Item))") // point cut with wildcard
     @After("execution(public * add*(..))") // point cut with dots - any parameters
-    public void printLogAfterAdd(JoinPoint joinPoint) {
+    public void printLogAfterAdd(JoinPoint joinPoint) { //
         System.out.println("We try to get parameters from method");
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature(); // information of invocation method
         System.out.println("methodSignature.getMethod() " + methodSignature.getMethod());
         System.out.println("methodSignature.getReturnType() " + methodSignature.getReturnType());
         System.out.println("methodSignature.getName() " + methodSignature.getName());

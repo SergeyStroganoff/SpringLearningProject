@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 @Aspect
 public class AfterReturningAspect {
 
+    // we can change result!
+
     @AfterReturning(pointcut = "execution(* addUser(org.example.entities.User))", returning ="result" )
     private void afterAddUserLoggingAdvice(JoinPoint joinPoint, boolean result) {
         Object[] objects = joinPoint.getArgs();

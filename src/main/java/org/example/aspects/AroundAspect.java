@@ -17,7 +17,7 @@ public class AroundAspect {
         Object targetResult;
         try {
             targetResult = proceedingJoinPoint.proceed();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {  // we can hand with exception
             System.out.println(e.getMessage());
             targetResult = new ArrayList<>();
         }

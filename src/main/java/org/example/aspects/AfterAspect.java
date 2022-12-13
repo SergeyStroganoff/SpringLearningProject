@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class AfterAspect {
+    //will run any case
     @After("execution(public * org.example.entities.*.deleteUser(org.example.entities.User))")
     // pointcut for all methods deleteUser in org.example.entities Package
     public void closeResources() {
