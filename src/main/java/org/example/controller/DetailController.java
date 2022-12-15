@@ -31,6 +31,6 @@ public class DetailController {
             System.out.println("Input is incorrect");
             throw new IllegalArgumentException("Error input detail data");
         }
-        return "operationResult";
+        return "deatailResult";
     }
 }
