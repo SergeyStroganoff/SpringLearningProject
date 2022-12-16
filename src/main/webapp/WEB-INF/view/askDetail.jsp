@@ -20,8 +20,8 @@
 </head>
 <body>
 <form:form action="${pageContext.request.contextPath}/detail/showResult" method="get" modelAttribute="detail">
-    Phone <form:input path="phone"/>
-    <form:errors path="phone"/>
+    Phone <form:input path="phoneNumber"/>
+    <form:errors path="phoneNumber"/>
     <br>
     Email <form:input path="email"/>
     <form:errors path="email"/>

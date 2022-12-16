@@ -17,7 +17,7 @@
 <br>
 <br><label>${detail.email}</label>
 <br>
-<br><label>${detail.phone}</label>
+<br><label>${detail.phoneNumber}</label>
 
 <a href="${pageContext.request.contextPath}/" type="" id="Go to index page">Go to main page</a>
 </body>
