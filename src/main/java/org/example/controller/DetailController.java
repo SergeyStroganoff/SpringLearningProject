@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @Controller
@@ -21,12 +22,12 @@ public class DetailController {
     }
 
     @RequestMapping("/showResult")
-    public String showResult(@ModelAttribute("detail") DetailDTO detailDTO,
+    public String showResult(@Valid @ModelAttribute("detail") DetailDTO detailDTO,
                              BindingResult bindingResult, Model model) { // BindingResult goes after @ModelAttribute !!!
         if (bindingResult.hasErrors()) { // validation
             return "askDetail";
         }
-        model.addAttribute("operationResult", "successfully"); // anther way validation
+        model.addAttribute("operationResult", "successfully"); // another way validation
         if (Objects.equals(detailDTO.getCity(), "") || detailDTO.getCity() == null) {
             System.out.println("Input is incorrect");
             throw new IllegalArgumentException("Error input detail data");

@@ -80,15 +80,14 @@
                     <artifactId>aspectjweaver</artifactId>
                     <version>1.9.9.1</version>
                 </dependency>
-                <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
+                <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator-->
                   <dependency>
                       <groupId>org.hibernate.validator</groupId>
                       <artifactId>hibernate-validator</artifactId>
                       <version>6.2.0.Final</version>
                   </dependency>
-                   https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <!--   https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -126,7 +125,7 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
+            <version>0.9.5.5</version>
         </dependency>
         <!--
         <dependency>

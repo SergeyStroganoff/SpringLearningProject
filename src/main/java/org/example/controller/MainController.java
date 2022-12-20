@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/showAnswer", method = RequestMethod.GET)
-    public String showAnswerPage(HttpServletRequest request, Model model) {
+    public String showAnswerPage(HttpServletRequest request, Model model, HttpServletResponse response) {
         String empName = request.getParameter("askForm");
         empName += " Mister";
         model.addAttribute("changedAttributeAskForm", empName);
