@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.validation.CheckEmail;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -22,5 +23,6 @@ public class DetailDTO implements Serializable {
     private String phoneNumber;
     @NotEmpty(message = "email can tot be empty") // here we can use spaces
     @NotBlank(message = "email can't  be empty or space symbols")
+    @CheckEmail(value = "gmail.com", message = "only emails with gmail.com can be used")
     private String email;
 }
