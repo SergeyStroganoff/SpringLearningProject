@@ -1,6 +1,5 @@
 package org.example.configuration;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.modelmapper.ModelMapper;
@@ -16,7 +15,6 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
@@ -33,15 +31,6 @@ public class ConfigurationSpring {
         return new ModelMapper();
     }
 
-    @Bean
-    public DataSource getDataSourceFromPool() throws PropertyVetoException {   // get connections from 3cpo connection pool
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setJdbcUrl(env.getRequiredProperty("datasource.url"));
-        dataSource.setDriverClass(env.getRequiredProperty("datasource.driver"));
-        dataSource.setUser(env.getRequiredProperty("datasource.username"));
-        dataSource.setPassword(env.getRequiredProperty("datasource.password"));
-        return dataSource;
-    }
 
     @Bean
     public DataSource getDataSource() {
@@ -54,9 +43,9 @@ public class ConfigurationSpring {
     }
 
     @Bean
-    public LocalSessionFactoryBean getSessionFactory() throws PropertyVetoException {
+    public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(getDataSource());   // set dataSource from c3po
+        sessionFactory.setDataSource(getDataSource());   // set dataSource
         sessionFactory.setPackagesToScan("org.example.entity");
         sessionFactory.setHibernateProperties(getHibernateProperties());
         return sessionFactory;
@@ -74,12 +63,8 @@ public class ConfigurationSpring {
         properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current_session_context_class"));
         //hibernate.connection.CharSet=utf8
         properties.put(AvailableSettings.HBM2DDL_CHARSET_NAME, env.getRequiredProperty("hibernate.connection.CharSet"));
-        //hibernate.connection.characterEncoding=utf8
         //hibernate.connection.useUnicode=true
-        // properties.put("hibernate.c3p0.min_size", env.getRequiredProperty("hibernate.c3p0.min_size"));
-        //properties.put("hibernate.c3p0.max_size", env.getRequiredProperty("hibernate.c3p0.max_size"));
-        // properties.put("hibernate.c3p0.acquire_increment", env.getRequiredProperty("hibernate.c3p0.acquire_increment"));
-        // properties.put("hibernate.c3p0.timeout", env.getRequiredProperty("hibernate.c3p0.timeout"));
+
         return properties;
     }
 

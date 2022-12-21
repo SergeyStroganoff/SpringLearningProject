@@ -111,28 +111,28 @@
           <artifactId>hibernate-commons-annotations</artifactId>
           <version>6.0.2.Final</version>
       </dependency>
-
-        <dependency>
-            <groupId>com.google.code.maven-play-plugin.com.mchange</groupId>
-            <artifactId>c3p0-oracle-thin-extras</artifactId>
-            <version>0.9.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>mchange-commons-java</artifactId>
-            <version>0.2.11</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5.5</version>
-        </dependency>
         <!--
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-dbcp</artifactId>
-            <version>10.0.20</version>
-        </dependency> -->
+                <dependency>
+                    <groupId>com.google.code.maven-play-plugin.com.mchange</groupId>
+                    <artifactId>c3p0-oracle-thin-extras</artifactId>
+                    <version>0.9.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.mchange</groupId>
+                    <artifactId>mchange-commons-java</artifactId>
+                    <version>0.2.11</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.mchange</groupId>
+                    <artifactId>c3p0</artifactId>
+                    <version>0.9.5.5</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-dbcp</artifactId>
+                    <version>10.0.20</version>
+                </dependency> -->
     </dependencies>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
