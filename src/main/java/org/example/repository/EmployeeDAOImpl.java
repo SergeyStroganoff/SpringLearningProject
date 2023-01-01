@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Autowired
@@ -20,10 +19,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public Employee getEmployee(long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Employee.class,id);
+        return session.get(Employee.class, id);
     }
 
     @Override
+    @Transactional
     public List<Employee> getAllEmployees() {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction(); //start transaction

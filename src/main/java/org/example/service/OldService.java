@@ -23,7 +23,6 @@ public class OldService {
         this.sessionFactory = sessionFactory;
     }
 
-
     public long addEmployee(Employee employee) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();

@@ -12,6 +12,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -31,7 +33,6 @@ public class ConfigurationSpring {
         return new ModelMapper();
     }
 
-
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -42,7 +43,7 @@ public class ConfigurationSpring {
         return dataSource;
     }
 
-    @Bean
+    @Bean(name = "sessionFactory")
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());   // set dataSource
@@ -64,16 +65,23 @@ public class ConfigurationSpring {
         //hibernate.connection.CharSet=utf8
         properties.put(AvailableSettings.HBM2DDL_CHARSET_NAME, env.getRequiredProperty("hibernate.connection.CharSet"));
         //hibernate.connection.useUnicode=true
-
         return properties;
     }
 
-    @Bean
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-        HibernateTransactionManager txManager = new HibernateTransactionManager();
-        txManager.setSessionFactory(sessionFactory);
-        return txManager;
-    }
+  // @Bean
+  // public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
+  //     HibernateTransactionManager txManager = new HibernateTransactionManager();
+  //     txManager.setSessionFactory(sessionFactory);
+  //     return txManager;
+  // }
+
+
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+//        return transactionManager;
+//    }
 }
 
 
