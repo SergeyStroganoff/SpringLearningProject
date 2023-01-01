@@ -16,14 +16,15 @@
 <div class="container">
     <h1>Hello, welcome to Employee base</h1>
 </div>
-
+<!-- Not used in this project!!!
 <a href="${pageContext.request.contextPath}/askName" type="" id="Go">AskName</a>
 <br>
 <a href="${pageContext.request.contextPath}/detail/add" type="" id="askDetail">AskDetail menu</a>
 <br>
+-->
 
-<div class=" container-sm table-responsive">
-    <table class="table">
+<div class="container-sm table-responsive">
+    <table class="table" aria-describedby="allEmpl">
         <thead class="bg-light">
         <tr>
             <th>name</th>

@@ -29,31 +29,54 @@ private DepartmentDTO department;
 private transient List<SkillDTO> skillList;
 --%>
 
-<form:form action="${pageContext.request.contextPath}/saveEmployee" method="get" modelAttribute="newEmployee">
-    Name <form:input path="name"/> <form:errors path="name"/>
-    <br>
-    <br>
-    Surname <form:input path="surname"/><form:errors path="surname"/>
-    <br>
-    <br>
-    Salary <form:input path="salary"/><form:errors path="salary"/>
-    <br>
-    <br>
-    City <form:input path="employeeDetail.city"/><form:errors path="employeeDetail.city"/>
-    <br>
-    <br>
-    Email <form:input path="employeeDetail.email"/><form:errors path="employeeDetail.email"/>
-    <br>
-    <br>
-    PhoneNumber <form:input path="employeeDetail.phoneNumber"/><form:errors path="employeeDetail.phoneNumber"/>
-    <br>
-    Department <form:select path="department">
-    <form:options items="${departments}"/>
-</form:select>
-    <br><br>
-    <input type="submit" value="Ok">
-</form:form>
+<br>
+<br>
+<br>
 
+<div class="container-fluid">
+    <form:form action="${pageContext.request.contextPath}/saveEmployee" method="get" modelAttribute="newEmployee">
+        <div class="row">
+            <div class="col-md-auto">
+                Name <form:input path="name"/> <form:errors path="name"/>
+            </div>
+            <div class="col-md-auto">
+                Surname <form:input path="surname"/><form:errors path="surname"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-auto">
+                Salary <form:input path="salary"/><form:errors path="salary"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-auto">
+                City <form:input path="employeeDetail.city"/><form:errors path="employeeDetail.city"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-auto">
+                Email <form:input path="employeeDetail.email"/><form:errors path="employeeDetail.email"/>
+            </div>
+            <div class="col-md-auto">
+                PhoneNumber <form:input path="employeeDetail.phoneNumber"/><form:errors
+                    path="employeeDetail.phoneNumber"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-auto">
+                Department <form:select path="department">
+                <form:options items="${departments}"/>
+            </form:select>
+            </div>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Ok">
+    </form:form>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
