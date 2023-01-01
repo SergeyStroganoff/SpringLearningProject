@@ -22,7 +22,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public List<Department> getAllDepartments() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("From Department ", Department.class).getResultList();
+        session.beginTransaction();
+        List<Department> departments = session.createQuery("From Department ", Department.class).getResultList();
+        session.close();
+        return departments;
     }
 }
 

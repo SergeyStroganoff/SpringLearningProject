@@ -19,7 +19,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public Employee getEmployee(long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Employee.class, id);
+        session.beginTransaction(); //start transaction
+        Employee employee = session.get(Employee.class, id);
+        session.close();
+        return employee;
     }
 
     @Override
@@ -35,14 +38,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public long add(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         session.save(employee);
+        session.close();
         return employee.getId();
     }
 
     @Override
     public boolean delete(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         session.delete(employee);
+        session.close();
         return true;
     }
 }
