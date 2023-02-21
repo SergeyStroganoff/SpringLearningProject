@@ -3,7 +3,6 @@ package org.example.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(includeFieldNames = true)
 @Getter
 public class Department {
 
@@ -35,7 +33,7 @@ public class Department {
             mappedBy = "department",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @ToString.Exclude
+    //@ToString.Exclude
     private List<Employee> employeeList;
 
 
@@ -51,5 +49,16 @@ public class Department {
         }
         employeeList.add(employee);
         employee.setDepartment(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", departmentName='" + departmentName + '\'' +
+                ", minSalary=" + minSalary +
+                ", maxSalary=" + maxSalary +
+                ", employeeList=" + employeeList +
+                '}';
     }
 }

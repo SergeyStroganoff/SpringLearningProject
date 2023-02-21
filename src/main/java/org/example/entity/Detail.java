@@ -65,7 +65,7 @@ public class Detail {
                 ", city='" + city + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", employee=" + employee +
+                ", employee=" + employee.getName() +
                 '}';
     }
 }

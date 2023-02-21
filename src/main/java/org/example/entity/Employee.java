@@ -45,7 +45,7 @@ public class Employee {
             name = "employee_skils",
             joinColumns = @JoinColumn(name = "employees_id"),
             inverseJoinColumns = @JoinColumn(name = "skills_id")) // join table for foreign keys !!!
-    @ToString.Exclude
+    //@ToString.Exclude
     private List<Skill> skillList;
 
     public Employee(String name, String surname, int salary, Detail employeeDetail) {
@@ -55,12 +55,13 @@ public class Employee {
         this.employeeDetail = employeeDetail;
     }
 
-    public void addSkill(Skill... skill) {
+    public void addSkill(Skill skill) {
         if (skillList == null) {
             skillList = new ArrayList<>();
         }
+        skillList.add(skill);
+        skill.addEmployee(this);
 
-        skillList.addAll(List.of(skill));
     }
 
     public void setDepartment(Department department) {
@@ -72,6 +73,7 @@ public class Employee {
 
     public void addEmployeeDetail(Detail detail) {
         employeeDetail = detail;
+        detail.setEmployee(this);
     }
 
     @Override
@@ -81,6 +83,9 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", salary=" + salary +
+                ", employeeDetail=" + employeeDetail.getCity() +
+                ", department=" + department.getDepartmentName() +
+                ", skillList=" + skillList.get(0).getSkillName() +
                 '}';
     }
 }

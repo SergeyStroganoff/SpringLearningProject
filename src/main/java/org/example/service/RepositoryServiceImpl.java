@@ -41,27 +41,28 @@ public class RepositoryServiceImpl implements RepositoryService {
     @Override
     public long saveOrUpdate(EmployeeDTO employeeDTO) {
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
-        System.out.println(employee);
-        System.out.println(employee.getEmployeeDetail());
-        System.out.println(employee.getDepartment());
-        System.out.println(employee.getSkillList());
 
 
         Department department = new Department("Finance", 1000, 5000);
+
         Detail detail = new Detail();
         detail.setCity("Ivanovo");
         detail.setEmail("111@set.com");
-        detail.setPhoneNumber("deded");
+        detail.setPhoneNumber("1234567890");
+
         Skill skill = new Skill();
         skill.setSkillName("Ajhntgzyj");
+
         Employee employee2 = new Employee();
         employee2.setName("Inan");
         employee2.setSalary(3453);
         employee2.setSurname("Gavri");
-        employee2.setEmployeeDetail(detail);
+        employee2.addEmployeeDetail(detail);
         employee2.setDepartment(department);
         employee2.addSkill(skill);
-        detail.setEmployee(employee2);
+        System.out.println(department);
+        System.out.println(detail);
+        System.out.println(skill);
         System.out.println(employee2);
         return employeeDAO.saveOrUpdate(employee2);
     }

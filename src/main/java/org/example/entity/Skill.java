@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(includeFieldNames = true)
+//@ToString(includeFieldNames = true)
 public class Skill {
 
 
@@ -30,7 +31,8 @@ public class Skill {
             name = "employee_skils",
             joinColumns = @JoinColumn(name = "skills_id"),
             inverseJoinColumns = @JoinColumn(name = "employees_id")) // join table for foreign keys !!!
-    @ToString.Exclude
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    //@ToString.Exclude
     @Setter
     private List<Employee> employeeList;
 
@@ -39,5 +41,15 @@ public class Skill {
             employeeList = new ArrayList<>();
         }
         employeeList.add(employee);
+        //employee.addSkill(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "id=" + id +
+                ", skillName='" + skillName + '\'' +
+                ", employeeList=" + employeeList.get(0).getName() +
+                '}';
     }
 }

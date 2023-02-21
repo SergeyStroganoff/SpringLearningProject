@@ -38,8 +38,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public long saveOrUpdate(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        System.out.println("Before saving " + employee);
-        session.save(employee);
+        session.persist(employee);
         session.close();
         return employee.getId();
     }
