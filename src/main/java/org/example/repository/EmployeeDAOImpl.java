@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -36,9 +35,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public long add(Employee employee) {
+    public long saveOrUpdate(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
+        System.out.println("Before saving " + employee);
         session.save(employee);
         session.close();
         return employee.getId();

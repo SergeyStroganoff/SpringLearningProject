@@ -1,9 +1,14 @@
 package org.example.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "details")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Detail {
 
     @Id
@@ -24,14 +29,6 @@ public class Detail {
         return employee;
     }
 
-    public Detail(String city, String phoneNumber, String email) {
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-
-    public Detail() {
-    }
 
     public String getCity() {
         return city;

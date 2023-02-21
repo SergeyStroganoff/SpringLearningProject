@@ -1,7 +1,9 @@
 package org.example.service;
 
 import org.example.entity.Department;
+import org.example.entity.Detail;
 import org.example.entity.Employee;
+import org.example.entity.Skill;
 import org.example.entity.dto.DepartmentDTO;
 import org.example.entity.dto.EmployeeDTO;
 import org.example.entity.dto.UtilDTO;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,9 +39,31 @@ public class RepositoryServiceImpl implements RepositoryService {
     }
 
     @Override
-    public long add(EmployeeDTO employeeDTO) {
+    public long saveOrUpdate(EmployeeDTO employeeDTO) {
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
-        return employeeDAO.add(employee);
+        System.out.println(employee);
+        System.out.println(employee.getEmployeeDetail());
+        System.out.println(employee.getDepartment());
+        System.out.println(employee.getSkillList());
+
+
+        Department department = new Department("Finance", 1000, 5000);
+        Detail detail = new Detail();
+        detail.setCity("Ivanovo");
+        detail.setEmail("111@set.com");
+        detail.setPhoneNumber("deded");
+        Skill skill = new Skill();
+        skill.setSkillName("Ajhntgzyj");
+        Employee employee2 = new Employee();
+        employee2.setName("Inan");
+        employee2.setSalary(3453);
+        employee2.setSurname("Gavri");
+        employee2.setEmployeeDetail(detail);
+        employee2.setDepartment(department);
+        employee2.addSkill(skill);
+        detail.setEmployee(employee2);
+        System.out.println(employee2);
+        return employeeDAO.saveOrUpdate(employee2);
     }
 
     @Override

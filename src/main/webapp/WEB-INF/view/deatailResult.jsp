@@ -12,14 +12,18 @@
     <title>Result off operation</title>
 </head>
 <body>
-<h2>Operation completed ${operationResult} </h2>
+<h2>Operation completed. ${operationResult} </h2>
 
-<label>${detail.city}</label>
+<label>${newEmployee.surname}</label>
 <br>
-<br><label>${detail.email}</label>
+<br><label>${newEmployee.name}</label>
 <br>
-<br><label>${detail.phoneNumber}</label>
-
+<br><label>${newEmployee.department.departmentName}</label>
+<br>
+<br><label>${newEmployee.employeeDetail.email}</label>
+<br>
+<br><label>${newEmployee.skillList.get(0)}</label>
+<br>
 <a href="${pageContext.request.contextPath}/" type="" id="Go to index page">Go to main page</a>
 </body>
 </html>

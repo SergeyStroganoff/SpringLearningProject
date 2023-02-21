@@ -1,7 +1,6 @@
 package org.example.repository;
 
 import org.example.entity.Employee;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ public interface EmployeeDAO {
 
     List<Employee> getAllEmployees();
 
-    long add(Employee employee);
+    long saveOrUpdate(Employee employee);
 
     boolean delete(Employee employee);
 }

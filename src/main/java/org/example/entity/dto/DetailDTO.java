@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class DetailDTO implements Serializable {
     @Pattern(regexp = "[A-Z]\\D{1,12}", message = "please use right name of City")
     private String city;
-    @Size(min = 12, max = 12, message = "Phone must be 12 symbols")
+    @Size(min = 1, max = 12, message = "Phone must be 12 symbols")
     private String phoneNumber;
     @NotEmpty(message = "email can tot be empty") // here we can use spaces
     @NotBlank(message = "email can't  be empty or space symbols")

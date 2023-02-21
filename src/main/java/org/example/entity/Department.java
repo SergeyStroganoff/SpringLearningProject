@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Table(name = "departments")
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString(includeFieldNames = true)
 @Getter

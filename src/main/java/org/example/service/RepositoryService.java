@@ -9,7 +9,7 @@ public interface RepositoryService {
 
     List<EmployeeDTO> getAllEmployees();
 
-    long add(EmployeeDTO employee);
+    long saveOrUpdate(EmployeeDTO employee);
 
     boolean delete(EmployeeDTO employeeDTO);
 

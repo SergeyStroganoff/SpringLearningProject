@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Error Page</title>
+    <title>Hi, it is an error Page</title>
 </head>
 <body>
 Request from ${pageContext.errorData.requestURI} is failed

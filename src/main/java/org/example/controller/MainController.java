@@ -6,15 +6,19 @@ import org.example.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller("mainController")
 public class MainController {
@@ -28,26 +32,32 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)     // new method
     public String showEntryPage(Model model) {
-        List<EmployeeDTO> allEmployeesDAO = repositoryService.getAllEmployees();
-        model.addAttribute("allEmployee", allEmployeesDAO);
+        List<EmployeeDTO> allEmployeesList = repositoryService.getAllEmployees();
+        model.addAttribute("allEmployee", allEmployeesList);
         return "index";
     }
 
     @RequestMapping(value = "/addNewEmployee")                   //new method
     public String addNewEmployee(Model model) {
-        model.addAttribute("newEmployee", new EmployeeDTO());
-        List<DepartmentDTO> departmentDTOS = repositoryService.getAllDepartments();
-        Map<String, String> departments = new HashMap<>();
-        departmentDTOS.forEach(x -> departments.put(x.getDepartmentName(), x.getDepartmentName()));
-        model.addAttribute("departments", departments);
+        model.addAttribute("newEmployeeDTO", new EmployeeDTO());
+        List<DepartmentDTO> departmentDTOList = repositoryService.getAllDepartments();
+        Map<String, String> departmentsDTO = new HashMap<>();
+        departmentDTOList.forEach(x -> departmentsDTO.put(x.getDepartmentName(), x.getDepartmentName()));
+        model.addAttribute("departmentsDTO", departmentsDTO);
         return "addNewEmployeeForm";
     }
 
-    @RequestMapping(value = "/saveEmployee")                   //new method
-    public String saveNewEmployee(@RequestParam("askForm") String parameter) {
-        return "addNewEmployeeForm";
+    @RequestMapping("/saveEmployee")
+    public String saveEmployee(@Valid @ModelAttribute("newEmployee") EmployeeDTO newEmployee,
+                               BindingResult bindingResult, Model model) { // BindingResult goes after @ModelAttribute !!!
+        if (bindingResult.hasErrors()) { // validation
+            return "addNewEmployeeForm";
+        }
+        repositoryService.saveOrUpdate(newEmployee);
+        model.addAttribute("operationResult", "successfully added" + newEmployee.getName()); // another way validation
+        model.addAttribute("newEmployee", newEmployee);
+        return "deatailResult";
     }
-
 
     @RequestMapping(value = "/askName", method = RequestMethod.GET)
     public String showAskPage() {

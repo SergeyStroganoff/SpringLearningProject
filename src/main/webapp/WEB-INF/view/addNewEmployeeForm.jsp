@@ -34,42 +34,47 @@ private transient List<SkillDTO> skillList;
 <br>
 
 <div class="container-fluid">
-    <form:form action="${pageContext.request.contextPath}/saveEmployee" method="get" modelAttribute="newEmployee">
+    <form:form action="${pageContext.request.contextPath}/saveEmployee" method="get" modelAttribute="newEmployeeDTO">
         <div class="row">
             <div class="col-md-auto">
-                Name <form:input path="name"/> <form:errors path="name"/>
+                Name <form:input path="name"/>
+                <form:errors path="name"/>
             </div>
             <div class="col-md-auto">
-                Surname <form:input path="surname"/><form:errors path="surname"/>
+                Surname <form:input path="surname"/>
+                <form:errors path="surname"/>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-auto">
-                Salary <form:input path="salary"/><form:errors path="salary"/>
+                Salary <form:input path="salary"/>
+                <form:errors path="salary"/>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-auto">
-                City <form:input path="employeeDetail.city"/><form:errors path="employeeDetail.city"/>
+                City <form:input path="employeeDetail.city"/>
+                <form:errors path="employeeDetail.city"/>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-auto">
-                Email <form:input path="employeeDetail.email"/><form:errors path="employeeDetail.email"/>
+                Email <form:input path="employeeDetail.email"/>
+                <form:errors path="employeeDetail.email"/>
             </div>
             <div class="col-md-auto">
-                PhoneNumber <form:input path="employeeDetail.phoneNumber"/><form:errors
-                    path="employeeDetail.phoneNumber"/>
+                PhoneNumber <form:input path="employeeDetail.phoneNumber"/>
+                <form:errors path="employeeDetail.phoneNumber"/>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-auto">
-                Department <form:select path="department">
-                <form:options items="${departments}"/>
+                Department <form:select path="department.departmentName">
+                <form:options items="${departmentsDTO}"/>
             </form:select>
             </div>
         </div>

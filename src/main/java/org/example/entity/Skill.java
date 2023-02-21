@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,14 +8,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "skills")
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString(includeFieldNames = true)
 public class Skill {
 
-    public Skill(String skillName) {
-        this.skillName = skillName;
-    }
 
     @Id
     @Column(name = "id")
@@ -27,7 +22,7 @@ public class Skill {
 
     @Column(name = "skill_name")
     @Setter
-    String skillName;
+    private String skillName;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
@@ -37,7 +32,7 @@ public class Skill {
             inverseJoinColumns = @JoinColumn(name = "employees_id")) // join table for foreign keys !!!
     @ToString.Exclude
     @Setter
-    List<Employee> employeeList;
+    private List<Employee> employeeList;
 
     public void addEmployee(Employee employee) {
         if (employeeList == null) {
