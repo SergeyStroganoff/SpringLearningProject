@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class RepositoryServiceImpl implements RepositoryService {
 
     @Autowired
@@ -41,10 +41,7 @@ public class RepositoryServiceImpl implements RepositoryService {
     @Override
     public long saveOrUpdate(EmployeeDTO employeeDTO) {
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
-
-
         Department department = new Department("Finance", 1000, 5000);
-
         Detail detail = new Detail();
         detail.setCity("Ivanovo");
         detail.setEmail("111@set.com");
@@ -57,7 +54,7 @@ public class RepositoryServiceImpl implements RepositoryService {
         employee2.setName("Inan");
         employee2.setSalary(3453);
         employee2.setSurname("Gavri");
-        employee2.addEmployeeDetail(detail);
+        employee2.setEmployeeDetail(detail);
         employee2.setDepartment(department);
         employee2.addSkill(skill);
         System.out.println(department);

@@ -1,6 +1,9 @@
 package org.example.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -12,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class Employee {
 
     @Id
@@ -29,11 +31,13 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "details_id") // name of foreign key in table Employee linked to id of details tables.
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
+    // name of foreign key in table Employee linked to id of details tables.
     private Detail employeeDetail;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "department_id") //foreign key is always here.
     private Department department;
@@ -45,15 +49,8 @@ public class Employee {
             name = "employee_skils",
             joinColumns = @JoinColumn(name = "employees_id"),
             inverseJoinColumns = @JoinColumn(name = "skills_id")) // join table for foreign keys !!!
-    //@ToString.Exclude
+    @ToString.Exclude
     private List<Skill> skillList;
-
-    public Employee(String name, String surname, int salary, Detail employeeDetail) {
-        this.name = name;
-        this.surname = surname;
-        this.salary = salary;
-        this.employeeDetail = employeeDetail;
-    }
 
     public void addSkill(Skill skill) {
         if (skillList == null) {
@@ -71,9 +68,29 @@ public class Employee {
         }
     }
 
-    public void addEmployeeDetail(Detail detail) {
+    public void setEmployeeDetail(Detail detail) {
         employeeDetail = detail;
         detail.setEmployee(this);
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 
     @Override

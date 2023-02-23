@@ -15,7 +15,6 @@ import java.util.List;
 //@ToString(includeFieldNames = true)
 public class Skill {
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +31,7 @@ public class Skill {
             joinColumns = @JoinColumn(name = "skills_id"),
             inverseJoinColumns = @JoinColumn(name = "employees_id")) // join table for foreign keys !!!
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    //@ToString.Exclude
+    @ToString.Exclude
     @Setter
     private List<Employee> employeeList;
 

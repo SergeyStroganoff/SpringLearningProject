@@ -1,7 +1,9 @@
 package org.example.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "details")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Detail {
 
     @Id
@@ -21,42 +25,10 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.PERSIST)
     private Employee employee;
 
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     @Override
     public String toString() {

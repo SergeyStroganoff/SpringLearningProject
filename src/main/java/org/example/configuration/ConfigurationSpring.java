@@ -65,6 +65,7 @@ public class ConfigurationSpring {
         //hibernate.connection.CharSet=utf8
         properties.put(AvailableSettings.HBM2DDL_CHARSET_NAME, env.getRequiredProperty("hibernate.connection.CharSet"));
         //hibernate.connection.useUnicode=true
+        properties.put(AvailableSettings.FORMAT_SQL, Boolean.TRUE);
         return properties;
     }
 
