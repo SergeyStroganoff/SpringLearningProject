@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Employee {
 
     @Id
@@ -61,36 +59,16 @@ public class Employee {
 
     }
 
-    public void setDepartment(Department department) {
+    public void addDepartment(Department department) {
         this.department = department;
         if (department.getEmployeeList() == null || !department.getEmployeeList().contains(this)) {
             department.addEmployee(this);
         }
     }
 
-    public void setEmployeeDetail(Detail detail) {
+    public void addEmployeeDetail(Detail detail) {
         employeeDetail = detail;
         detail.setEmployee(this);
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public void setSkillList(List<Skill> skillList) {
-        this.skillList = skillList;
     }
 
     @Override

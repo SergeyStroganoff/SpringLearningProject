@@ -91,19 +91,19 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.6.2.Final</version>
+            <version>5.6.14.Final</version>
         </dependency>
-        <!--
+
       <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>8.0.29</version>
       </dependency>
-     -->
+
         <dependency>
             <groupId>software.aws.rds</groupId>
             <artifactId>aws-mysql-jdbc</artifactId>
-            <version>1.1.1</version>
+            <version>1.1.4</version>
         </dependency>
 
       <dependency>

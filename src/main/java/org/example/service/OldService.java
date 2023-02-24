@@ -5,7 +5,6 @@ import org.example.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -68,7 +67,7 @@ public class OldService {
         Employee employeeFromDB = session.get(Employee.class, id);
         employeeFromDB.setName(employee.getName());
         employeeFromDB.setSurname(employee.getSurname());
-        employeeFromDB.setDepartment(employee.getDepartment());
+        employeeFromDB.addDepartment(employee.getDepartment());
         employeeFromDB.setSalary(employee.getSalary());
         session.getTransaction().commit();
     }

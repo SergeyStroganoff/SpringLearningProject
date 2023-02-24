@@ -48,7 +48,7 @@ public class Department {
             employeeList = new ArrayList<>();
         }
         employeeList.add(employee);
-        employee.setDepartment(this);
+        employee.addDepartment(this);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "employeeDetail", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "employeeDetail", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Employee employee;
 
 

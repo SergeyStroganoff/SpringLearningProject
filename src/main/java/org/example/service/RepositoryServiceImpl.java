@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,6 @@ public class RepositoryServiceImpl implements RepositoryService {
     @Autowired
     private ModelMapper modelMapper;
 
-
     @Override
     public List<EmployeeDTO> getAllEmployees() {
         List<Employee> employees = employeeDAO.getAllEmployees();
@@ -37,7 +35,6 @@ public class RepositoryServiceImpl implements RepositoryService {
         //  }.getType());
         return UtilDTO.transformToDTOEmployeeList(employees);
     }
-
     @Override
     public long saveOrUpdate(EmployeeDTO employeeDTO) {
         Employee employee = modelMapper.map(employeeDTO, Employee.class);
@@ -54,8 +51,8 @@ public class RepositoryServiceImpl implements RepositoryService {
         employee2.setName("Inan");
         employee2.setSalary(3453);
         employee2.setSurname("Gavri");
-        employee2.setEmployeeDetail(detail);
-        employee2.setDepartment(department);
+        employee2.addEmployeeDetail(detail);
+        employee2.addDepartment(department);
         employee2.addSkill(skill);
         System.out.println(department);
         System.out.println(detail);
