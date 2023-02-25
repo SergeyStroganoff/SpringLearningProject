@@ -1,9 +1,6 @@
 package org.example.entity.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.validation.CheckEmail;
 
 import javax.validation.constraints.NotBlank;
@@ -16,6 +13,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class DetailDTO implements Serializable {
     @Pattern(regexp = "[A-Z]\\D{1,12}", message = "please use right name of City")
     private String city;

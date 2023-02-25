@@ -78,9 +78,9 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", salary=" + salary +
-                ", employeeDetail=" + employeeDetail.getCity() +
-                ", department=" + department.getDepartmentName() +
-                ", skillList=" + skillList.get(0).getSkillName() +
+                ", employeeDetail=" + employeeDetail +
+                ", department=" + department +
+                ", skillList=" + skillList +
                 '}';
     }
 }

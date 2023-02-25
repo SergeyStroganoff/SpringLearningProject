@@ -1,9 +1,6 @@
 package org.example.entity.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class SkillDTO implements Serializable {
    private String skillName;
    private transient List<EmployeeDTO> employeeList;

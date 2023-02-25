@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-//@ToString(includeFieldNames = true)
+@ToString(includeFieldNames = true)
 public class Skill {
 
     @Id
@@ -40,15 +40,6 @@ public class Skill {
             employeeList = new ArrayList<>();
         }
         employeeList.add(employee);
-        //employee.addSkill(this);
-    }
-
-    @Override
-    public String toString() {
-        return "Skill{" +
-                "id=" + id +
-                ", skillName='" + skillName + '\'' +
-                ", employeeList=" + employeeList.get(0).getName() +
-                '}';
+        employee.addSkill(this);
     }
 }

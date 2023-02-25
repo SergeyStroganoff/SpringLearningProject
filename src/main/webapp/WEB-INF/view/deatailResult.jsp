@@ -22,7 +22,7 @@
 <br>
 <br><label>${newEmployee.employeeDetail.email}</label>
 <br>
-<br><label>${newEmployee.skillList.get(0)}</label>
+<br><label>${newEmployee.employeeDetail.phoneNumber}</label>
 <br>
 <a href="${pageContext.request.contextPath}/" type="" id="Go to index page">Go to main page</a>
 </body>

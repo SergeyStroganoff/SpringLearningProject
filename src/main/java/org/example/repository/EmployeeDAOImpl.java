@@ -35,7 +35,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             session = sessionFactory.getCurrentSession();
             transaction = session.beginTransaction(); //start transaction
             employeeList = session.createQuery("From Employee", Employee.class).getResultList();
-
             // NativeQuery<Employee> query = session.createNativeQuery(
             //        "select * from employees", Employee.class);
             //  employeeList = query.getResultList();
@@ -47,13 +46,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 session.close();
             }
         }
-        // NativeQuery<Product> query = session.createNativeQuery(
-        //        "select * from NON_EXISTING_TABLE", Product.class);
-        // query.getResultList();
-        //List<Employee> employeeList = session.createQuery("From Employee", Employee.class).getResultList();
-        // List<Department> departmentList = session.createQuery("From Department ", Department.class).getResultList();
-        //  List<Detail> details = session.createQuery("From Detail ", Detail.class).getResultList();
-        //  List<Skill> skillList = session.createQuery("From Skill ", Skill.class).getResultList();
         return employeeList;
     }
 
@@ -69,10 +61,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public boolean delete(Employee employee) {
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        session.delete(employee);
-        session.close();
+        Session session = null;
+        Transaction transaction;
+        try {
+            session = sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+            session.delete(employee);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session != null) {
+                session.close();
+                return false;
+            }
+        }
         return true;
     }
 }

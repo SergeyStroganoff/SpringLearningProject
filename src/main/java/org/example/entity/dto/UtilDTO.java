@@ -1,7 +1,10 @@
 package org.example.entity.dto;
 
+import org.example.entity.Department;
+import org.example.entity.Detail;
 import org.example.entity.Employee;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +32,17 @@ public class UtilDTO {
             });
         }
         return employeeDTOList;
+    }
+
+    public static Employee mapToEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        employee.setName(employeeDTO.getName());
+        employee.setSurname(employeeDTO.getSurname());
+        employee.setSalary(employeeDTO.getSalary());
+        employee.addDepartment(modelMapper.map(employeeDTO.getDepartment(), Department.class));
+        employee.setEmployeeDetail(modelMapper.map(employeeDTO.getEmployeeDetail(), Detail.class));
+        employee.setSkillList(modelMapper.map(employeeDTO.getSkillList(), new TypeToken<List<EmployeeDTO>>() {
+        }.getType()));
+        return employee;
     }
 }

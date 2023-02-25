@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Detail {
 
     @Id
@@ -25,19 +23,11 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
+    @ToString.Exclude
     @OneToOne(mappedBy = "employeeDetail", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Employee employee;
 
-
-
-    @Override
-    public String toString() {
-        return "Detail{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", employee=" + employee.getName() +
-                '}';
+    public void addEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
