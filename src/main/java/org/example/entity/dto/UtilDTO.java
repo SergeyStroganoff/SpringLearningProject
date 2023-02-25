@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UtilDTO {
+    private UtilDTO() {
+    }
     private static final ModelMapper modelMapper = new ModelMapper();
 
     public static List<EmployeeDTO> transformToDTOEmployeeList(List<Employee> employeeList) {
@@ -26,7 +28,6 @@ public class UtilDTO {
                 employeeDTOList.add(employeeDTO);
             });
         }
-
         return employeeDTOList;
     }
 }
