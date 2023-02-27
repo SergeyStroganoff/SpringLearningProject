@@ -69,6 +69,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             session.delete(employee);
             transaction.commit();
         } catch (Exception e) {
+            System.out.println("Удаление не удалось");
             if (session != null) {
                 session.close();
                 return false;

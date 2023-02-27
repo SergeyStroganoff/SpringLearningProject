@@ -40,7 +40,7 @@ public class Employee {
     @JoinColumn(name = "department_id") //foreign key is always here.
     private Department department;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -56,7 +56,6 @@ public class Employee {
         }
         skillList.add(skill);
         skill.addEmployee(this);
-
     }
 
     public void addDepartment(Department department) {

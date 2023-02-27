@@ -31,7 +31,7 @@ public class Department {
 
     @OneToMany(
             mappedBy = "department",
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @ToString.Exclude
     private List<Employee> employeeList;

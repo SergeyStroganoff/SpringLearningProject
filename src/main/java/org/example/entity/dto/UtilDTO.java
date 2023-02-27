@@ -19,6 +19,7 @@ public class UtilDTO {
         if (!employeeList.isEmpty()) {
             employeeList.forEach(x -> {
                 EmployeeDTO employeeDTO = new EmployeeDTO();
+                employeeDTO.setId(x.getId());
                 employeeDTO.setName(x.getName());
                 employeeDTO.setSurname(x.getSurname());
                 employeeDTO.setSalary(x.getSalary());

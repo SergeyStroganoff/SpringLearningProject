@@ -34,15 +34,13 @@ public class RepositoryServiceImpl implements RepositoryService {
     }
     @Override
     public long saveOrUpdate(EmployeeDTO employeeDTO) {
-        System.out.println(employeeDTO);
-        Employee employee = modelMapper.map(employeeDTO, Employee.class); //UtilDTO.mapToEmployee(employeeDTO);  //
-        System.out.println(employee);
+        Employee employee = modelMapper.map(employeeDTO, Employee.class);
         return employeeDAO.saveOrUpdate(employee);
     }
 
     @Override
-    public boolean delete(EmployeeDTO employeeDTO) {
-        Employee employee = modelMapper.map(employeeDTO, Employee.class);
+    public boolean deleteEmployee(long employeeId) {
+        Employee employee = employeeDAO.getEmployee(employeeId);
         return employeeDAO.delete(employee);
     }
 

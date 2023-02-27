@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class EmployeeDTO implements Serializable {
+
+    private long id;
     @Size(min = 2, max = 12, message = "Name must be from 2 to 12 symbols")
     private String name;
     private String surname;
@@ -20,7 +22,8 @@ public class EmployeeDTO implements Serializable {
     private DetailDTO employeeDetail;
     private DepartmentDTO department;
     private final transient List<SkillDTO> skillList = new ArrayList<>();
-    public void addSkill(SkillDTO skill){
+
+    public void addSkill(SkillDTO skill) {
         skillList.add(skill);
     }
 }

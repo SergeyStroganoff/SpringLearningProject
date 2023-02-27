@@ -23,7 +23,7 @@ import java.util.Objects;
 @Controller("mainController")
 public class MainController {
 
-    RepositoryService repositoryService;
+    private final RepositoryService repositoryService;
 
     @Autowired
     public MainController(RepositoryService repositoryService) {
@@ -58,6 +58,15 @@ public class MainController {
         model.addAttribute("newEmployee", newEmployee);
         return "deatailResult";
     }
+
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("empid") long id, Model model) { // BindingResult goes after @ModelAttribute !!!
+        repositoryService.deleteEmployee(id);
+        List<EmployeeDTO> allEmployeesList = repositoryService.getAllEmployees();
+        model.addAttribute("allEmployee", allEmployeesList);
+        return "index";
+    }
+
 
     @RequestMapping(value = "/askName", method = RequestMethod.GET)
     public String showAskPage() {

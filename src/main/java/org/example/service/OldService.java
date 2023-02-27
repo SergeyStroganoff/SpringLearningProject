@@ -14,7 +14,6 @@ public class OldService {
 
     public OldService() {
     }
-
     @Autowired
     private SessionFactory sessionFactory;
 

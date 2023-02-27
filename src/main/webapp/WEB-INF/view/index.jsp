@@ -27,23 +27,35 @@
     <table class="table" aria-describedby="allEmpl">
         <thead class="bg-light">
         <tr>
+            <th>id</th>
             <th>name</th>
             <th>surname</th>
             <th>salary</th>
             <th>City</th>
             <th>phoneNumber</th>
             <th>email</th>
+            <th>Operations</th>
         </tr>
         </thead>
         <tbody class="table-striped">
         <c:forEach var="empl" items="${allEmployee}">
+            <c:url var="delete_action" value="/deleteEmployee">
+                <c:param name="empid" value="${empl.id}">3</c:param>
+            </c:url>
             <tr>
+                <td>${empl.id}</td>
                 <td>${empl.name}</td>
                 <td>${empl.surname}</td>
                 <td>${empl.salary}</td>
                 <td>${empl.employeeDetail.city}</td>
                 <td>${empl.employeeDetail.phoneNumber}</td>
                 <td>${empl.employeeDetail.email}</td>
+                <td>
+                    <div class="container-sm">
+                        <input type="button" class="btn btn-link" value="Delete"  onclick="window.location.href='${delete_action}'">
+                    </div>
+
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -51,7 +63,7 @@
 </div>
 
 <div class="container-sm">
-    <input type="button" value="Add Employee" onclick="window.location.href='addNewEmployee'">
+    <input type="button" class="btn btn-primary" value="Add Employee" onclick="window.location.href='addNewEmployee'">
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

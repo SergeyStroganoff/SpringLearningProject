@@ -11,7 +11,7 @@ public interface RepositoryService {
 
     long saveOrUpdate(EmployeeDTO employee);
 
-    boolean delete(EmployeeDTO employeeDTO);
+    boolean deleteEmployee(long employeeId);
 
     EmployeeDTO getEmployeeDTO (long id);
 
