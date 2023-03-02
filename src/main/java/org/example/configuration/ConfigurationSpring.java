@@ -1,5 +1,6 @@
 package org.example.configuration;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -18,7 +23,10 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "org.example")
 @EnableTransactionManagement
+//@EnableJpaRepositories
 @PropertySource(value = {"classpath:hibernate.properties"})
+@EnableWebMvc
+@EnableAsync // enable @Async to methods
 public class ConfigurationSpring {
 
     @Autowired
@@ -65,20 +73,17 @@ public class ConfigurationSpring {
         return properties;
     }
 
-  // @Bean
-  // public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
-  //     HibernateTransactionManager txManager = new HibernateTransactionManager();
-  //     txManager.setSessionFactory(sessionFactory);
-  //     return txManager;
-  // }
+   @Bean
+   public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+       HibernateTransactionManager txManager = new HibernateTransactionManager();
+       txManager.setSessionFactory(sessionFactory);
+       return txManager;
+   }
 
-
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-//        return transactionManager;
-//    }
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }
 
 
