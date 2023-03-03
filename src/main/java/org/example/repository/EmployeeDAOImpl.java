@@ -1,5 +1,7 @@
 package org.example.repository;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.example.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Log4j
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Autowired
@@ -45,6 +48,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             if (session != null) {
                 session.close();
             }
+
         }
         return employeeList;
     }
@@ -69,7 +73,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             session.delete(employee);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Удаление не удалось");
             if (session != null) {
                 session.close();
                 return false;

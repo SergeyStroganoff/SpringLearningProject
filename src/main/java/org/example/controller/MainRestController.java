@@ -34,18 +34,22 @@ public class MainRestController {
         return employeeDTO;
     }
 
+    @PostMapping("/employees/save")
+    public long saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return repositoryService.saveOrUpdate(employeeDTO);
+    }
+
+
+    @DeleteMapping("/employees/{id}")
+    public boolean updateEmployee(@PathVariable long id) {
+        return repositoryService.deleteEmployee(id);
+    }
+
 
     @ExceptionHandler
     public ResponseEntity<ExceptionMessage> exceptionMessageResponseEntity(NoSuchEmployeeException noSuchEmployeeException) {
         ExceptionMessage exceptionMessage = new ExceptionMessage();
         exceptionMessage.setInfo(noSuchEmployeeException.getMessage());
         return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<ExceptionMessage> exceptionMessageResponseEntity(Exception exception) {
-        ExceptionMessage exceptionMessage = new ExceptionMessage();
-        exceptionMessage.setInfo(exception.getMessage());
-        return new ResponseEntity<>(exceptionMessage, HttpStatus.BAD_REQUEST);
     }
 }
