@@ -5,6 +5,7 @@ import org.example.entity.Employee;
 import org.example.entity.dto.DepartmentDTO;
 import org.example.entity.dto.EmployeeDTO;
 import org.example.entity.dto.UtilDTO;
+import org.example.exceptions.NoSuchEmployeeException;
 import org.example.repository.DepartmentDAO;
 import org.example.repository.EmployeeDAO;
 import org.modelmapper.ModelMapper;
@@ -18,6 +19,7 @@ import java.util.List;
 //@Transactional
 public class RepositoryServiceImpl implements RepositoryService {
 
+    public static final String NO_EMPLOYEE_WITH_SUCH_ID = "No Employee with such id";
     @Autowired
     private DepartmentDAO departmentDAO;
     @Autowired
@@ -45,8 +47,11 @@ public class RepositoryServiceImpl implements RepositoryService {
     }
 
     @Override
-    public EmployeeDTO getEmployeeDTO(long id) {
+    public EmployeeDTO getEmployeeDTO(long id) throws NoSuchEmployeeException {
         Employee employee = employeeDAO.getEmployee(id);
+        if (employee == null) {
+            throw  new NoSuchEmployeeException(NO_EMPLOYEE_WITH_SUCH_ID + " " + id);
+        }
         return modelMapper.map(employee, EmployeeDTO.class);
     }
 
