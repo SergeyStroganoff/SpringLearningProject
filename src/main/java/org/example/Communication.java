@@ -18,11 +18,24 @@ public class Communication {
     private RestTemplate restTemplate;
 
     public List<EmployeeDTO> getAllEmployees() {
-        ResponseEntity<List<EmployeeDTO>> responseEntity = restTemplate.exchange(URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<EmployeeDTO>>() {
+        ResponseEntity<List<EmployeeDTO>> responseEntity = restTemplate.exchange(URL + "/employees", HttpMethod.GET, null, new ParameterizedTypeReference<List<EmployeeDTO>>() {
         });
         List<EmployeeDTO> employeeDTOList = responseEntity.getBody();
-        return null;
+        return employeeDTOList;
     }
 
+    public EmployeeDTO getEmployeeDTO(long id) {
+        EmployeeDTO employeeDTO = restTemplate.getForObject(URL + "/employees/" + id, EmployeeDTO.class);
+        return employeeDTO;
+    }
 
+    public void saveOrUpdateEmployees(EmployeeDTO employeeDTO) {
+        if (employeeDTO.getId() == 0) {
+            ResponseEntity<String> responseEntity =
+                    restTemplate.postForEntity(URL + "/employees/save", employeeDTO, String.class);
+            System.out.println("New employee was added" + responseEntity.getBody());
+        } else {
+            restTemplate.put(URL + "/employees/save", EmployeeDTO.class);
+        }
+    }
 }
