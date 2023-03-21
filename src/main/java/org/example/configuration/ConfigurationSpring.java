@@ -36,8 +36,8 @@ public class ConfigurationSpring {
     }
 
     @Bean
-    public BCryptPasswordEncoder getNewbCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public BCryptPasswordEncoder getBCryptPasswordEncoder() {
+        return  new BCryptPasswordEncoder();
     }
 
     @Bean
