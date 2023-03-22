@@ -83,6 +83,7 @@ public class ConfigurationSpring {
         return txManager;
     }
 
+    @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/view/");

@@ -1,9 +1,12 @@
 package org.example.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.example.entity.dto.DepartmentDTO;
 import org.example.entity.dto.EmployeeDTO;
 import org.example.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +21,12 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller("mainController")
 public class MainController {
 
     private final RepositoryService repositoryService;
+    private static final Log logger = LogFactory.getLog(MainController.class);
 
     @Autowired
     public MainController(RepositoryService repositoryService) {
@@ -34,6 +37,7 @@ public class MainController {
     public String showEntryPage(Model model) {
         List<EmployeeDTO> allEmployeesList = repositoryService.getAllEmployees();
         model.addAttribute("allEmployee", allEmployeesList);
+        logger.info("allEmployee list successfully returned");
         return "index";
     }
 
