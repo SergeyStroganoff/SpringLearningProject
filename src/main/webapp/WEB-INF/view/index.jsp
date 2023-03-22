@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Index page</title>
@@ -51,9 +52,11 @@
                 <td>${empl.employeeDetail.phoneNumber}</td>
                 <td>${empl.employeeDetail.email}</td>
                 <td>
+                    <security:authorize>
                     <div class="container-sm">
                         <input type="button" class="btn btn-link" value="Delete"  onclick="window.location.href='${delete_action}'">
                     </div>
+                    </security:authorize>
 
                 </td>
             </tr>
