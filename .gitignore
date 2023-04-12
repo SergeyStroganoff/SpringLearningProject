@@ -20,4 +20,4 @@
 *.xls
 *.xlsx
 *.png
-!/src/main/resources/hibernate.properties
+hibernate.properties

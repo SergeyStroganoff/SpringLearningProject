@@ -1,36 +1,51 @@
 package org.example.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.sql.DataSource;
+
+@Configuration
 @EnableWebSecurity
+@Import(ConfigurationSpring.class)
 public class SecurityConfiguration {
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user1 = User.withUsername("user1")
-                .password(passwordEncoder().encode("123"))
-                .roles("USER")
-                .build();
-        UserDetails user2 = User.withUsername("user2")
-                .password(passwordEncoder().encode("123"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder().encode("123"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2, admin);
+
+    private final DataSource dataSource;
+
+    @Autowired
+    public SecurityConfiguration(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        //  UserDetails user1 = User.withUsername("user1")
+        //          .password(passwordEncoder().encode("123"))
+        //          .roles("USER")
+        //          .build();
+        //  UserDetails user2 = User.withUsername("user2")
+        //          .password(passwordEncoder().encode("123"))
+        //          .roles("USER")
+        //          .build();
+        //  UserDetails admin = User.withUsername("admin")
+        //          .password(passwordEncoder().encode("123"))
+        //          .roles("ADMIN")
+        //          .build();
+        //  return new InMemoryUserDetailsManager(user1, user2, admin);
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+        return users;
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

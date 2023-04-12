@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="icon" href="${pageContext.request.contextPath}/icon/icon-3914464.png" type="image/x-icon">
+    <link rel="icon" href="${pageContext.request.contextPath}/icon/icons8-web-ios-16-glyph-32.png" type="image/x-icon">
 </head>
 <body>
 
@@ -52,7 +52,7 @@
                 <td>${empl.employeeDetail.phoneNumber}</td>
                 <td>${empl.employeeDetail.email}</td>
                 <td>
-                    <security:authorize>
+                    <security:authorize access="hasRole('ADMIN')">
                     <div class="container-sm">
                         <input type="button" class="btn btn-link" value="Delete"  onclick="window.location.href='${delete_action}'">
                     </div>
